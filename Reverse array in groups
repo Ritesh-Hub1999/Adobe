@@ -1,0 +1,21 @@
+https://practice.geeksforgeeks.org/problems/reverse-array-in-groups0255/1?page=1&company[]=Adobe&curated[]=1&sortBy=submissions
+Input:
+N = 5, K = 3
+arr[] = {1,2,3,4,5}
+Output: 3 2 1 5 4
+Explanation: First group consists of elements
+1, 2, 3. Second group consists of 4,5.
+
+void reverseInGroups(vector<long long>& arr, int n, int k){
+        for(int i=0;i<n;i=i+k){
+            int start =i;
+            // to handle case when k is not multiple of n
+            int end = min(i+k-1,n-1);
+            
+            while(start < end){
+                swap(arr[start],arr[end]);
+                start++;
+                end--;
+            }
+        }
+    }

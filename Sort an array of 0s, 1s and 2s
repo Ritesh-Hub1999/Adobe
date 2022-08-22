@@ -1,0 +1,40 @@
+https://practice.geeksforgeeks.org/problems/sort-an-array-of-0s-1s-and-2s4231/1?page=1&company[]=Adobe&curated[]=1&sortBy=submissions
+N = 5
+arr[]= {0 2 1 2 0}
+Output:
+0 0 1 2 2
+Explanation:
+0s 1s and 2s are segregated 
+into ascending order.
+
+void sort012(int a[], int n)
+    {
+        int zero =0;
+        int one = 0;
+        int two = 0;
+        
+        for(int i=0;i<n;i++){
+            if(a[i]==0){
+                zero++;
+            }
+            else if(a[i]==1){
+                one++;
+            }
+            else{
+                two++;
+            }
+        }
+        int i=0;
+        while(i<n && zero--){
+            a[i]=0;
+            i++;
+        }
+        while(i<n && one--){
+            a[i]=1;
+            i++;
+        }
+        while(i<n && two--){
+            a[i]=2;
+            i++;
+        }
+    }

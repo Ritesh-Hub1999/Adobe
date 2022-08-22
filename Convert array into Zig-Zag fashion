@@ -1,0 +1,19 @@
+https://practice.geeksforgeeks.org/problems/convert-array-into-zig-zag-fashion1638/1?page=1&company[]=Adobe&curated[]=1&sortBy=submissions
+Input:
+N = 7
+Arr[] = {4, 3, 7, 8, 6, 2, 1}
+Output: 3 7 4 8 2 6 1
+Explanation: 3 < 7 > 4 < 8 > 2 < 6 > 1
+
+void zigZag(int arr[], int n) {
+	    for(int i=0;i<n-1;i++){
+	        //element in even location are less than it's left and right
+	        if(i%2 == 0 && arr[i]>arr[i+1]){
+	            swap(arr[i],arr[i+1]);
+	        }
+	        //elements in odd location are greater than it's left and right
+	        else if(i%2==1 && arr[i]<arr[i+1]){
+	            swap(arr[i],arr[i+1]);
+	        }
+	    }
+	}

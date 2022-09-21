@@ -1,0 +1,66 @@
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Example 1:
+----------
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+
+Example 2:
+----------
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Example 3:
+---------
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+Approch:
+-------
+Two pointer approch use krna hoga start and end pointer bana lo
+We need to find the max length
+
+step1 : hum start and end pointer ko point kara denga 0
+        index pe
+        
+step2 : hama max length cahiya so maxLen variable bana lia
+
+step 3: set use karenga jisma unique char store karenga
+
+step4: agr character nai hai set mai tho set mai daal do 
+       and end ko aga bardha do and maxlength update kr do
+       
+step5 : agr wo char duplicate raha tho usa set sa delete karo
+        and start ko aga bardhao.
+
+code:
+----
+int lengthOfLongestSubstring(string s) {
+        int start=0;
+        int end=0;
+        int n = s.length();
+        int maxLen =0;
+        set<int> set;
+        
+        while(start < n && end < n){
+            
+            //agr character nai hai set mai tho set mai
+            //daal do and end ko aga bardha do
+            //and maxlength update kr do
+            
+            if(set.find(s[end]) == set.end()){
+                set.insert(s[end]);
+                end++;
+                maxLen = max(maxLen,end - start);
+            }
+            //agr wo char duplicate cha
+            
+            else{
+                set.erase(s[start]);
+                start++;
+            }
+        }

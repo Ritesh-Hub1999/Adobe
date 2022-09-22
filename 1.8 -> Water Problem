@@ -1,0 +1,62 @@
+https://practice.geeksforgeeks.org/contest/job-a-thon-13-hiring-challenge/problems/#
+
+There are N water tanks in a row. you are given an array A of size N where Ai
+
+Example:
+-------
+Input:
+N = 4,
+A = {7, 18, 16, 14}
+Output: 15
+Explanation: 
+At the beginning of the operation tank has {7,18,16,14}
+Shift water from 1st tank, remaining water {0,17,15,13}
+Shift water from 3rd tank, remaining water {0,16, 0,12}
+Shift water from 4th tank, remaining water {0,15, 0, 0}
+Shift water from 2nd tank, remaining water {0, 0, 0, 0}
+Therefore the capacity of bucket needs to be of 15 units.
+
+Example:
+-------
+Input:
+N = 1,
+A = {3}
+Output: 3
+Explanation: We will shift the water from the only
+tank available.
+
+Explanation:
+------------
+{7, 18, 16, 14}
+
+sort: {7, 14, 16, 18}
+
+7 {0, 13, 15, 17}
+13{0, 0, 14, 16}
+14{0, 0, 0, 15}
+15{0,0,0,0}
+
+Approch:
+-------
+step 1: Sort the Array 
+
+Step 2: count minute in every interval
+
+step 3: find the max bucket capacity 
+        by subtracting the minute in 
+        every interval
+Code:
+-----
+int minCapacity(int n,int a[])
+	{
+		sort(a,a+n);
+		int minute = 0;
+		int maxCap = INT_MIN;
+		
+		for(int i=0;i<n;i++){
+		    maxCap = max(maxCap,a[i] - minute);
+		    minute++;
+		}
+		
+		return maxCap;
+	}

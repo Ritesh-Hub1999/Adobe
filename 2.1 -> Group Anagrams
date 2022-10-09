@@ -1,0 +1,50 @@
+https://leetcode.com/problems/group-anagrams/description/
+
+Example 1:
+----------
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Example 2:
+----------
+Input: strs = [""]
+Output: [[""]]
+
+Example 3:
+---------
+Input: strs = ["a"]
+Output: [["a"]]
+
+Approch:
+-------
+hum ek string uthainga usa sort karenga and dekhenga 
+usma wo sara char araha hai.
+
+ex: eat : aet (eat ko sort karega aet aiga)
+
+so hum har string ko utha kar check karenga ki wo sara
+char present hai. Mtlb har char ko sort karka dekhenga 
+agr present raha tho map mai store kar denga ham usa.
+
+step1 : string ko map kr denga uska acorrding sort kia hua string sa
+step2 : ans mai store karenga wo group of string ko jo vector mai store tha
+
+code:
+----
+ vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> ans;
+        unordered_map<string,vector<string>> poss;
+        
+        for(auto i:strs){
+            string temp = i;
+            sort(i.begin(),i.end());
+            poss[i].push_back(temp);
+        }
+
+        for(auto x: poss){
+            vector<string> output = x.second;
+            ans.push_back(output);
+        }
+
+        return ans;
+    }

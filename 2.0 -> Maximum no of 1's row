@@ -1,0 +1,93 @@
+https://practice.geeksforgeeks.org/problems/maximum-no-of-1s-row3027/0
+Example 1:
+----------
+Input:
+N = 3, M = 4
+Mat[] = {{0 1 1 1},
+         {0 0 1 1},
+         {0 0 1 1}}
+Output: 0
+Explanation: Row 0 has 3 ones whereas
+rows 1 and 2 have just 2 ones.
+
+Example 2:
+----------
+Input: 
+N = 2, M = 2
+Mat[] = {{0 1},
+         {1 1}}
+Output: 1
+Explanation: Row 1 has 2 ones whereas
+row 0 has just a single one. 
+
+Approch:
+-------
+Binary search use karenga
+
+case 1: agr starting index hi 1 hai tho pura array mai 1 hoga
+
+case 2: agr array ka end mai zero hai tho ans 0 hoga
+
+case 3: agr in teeno case mai kuch nai hua tho binary search apply
+        karenga
+        
+        -> and check karenga agr mid mai 1 ho and mid - 1 mai 0 ho
+           tho isa hum us row mai kitna 1's para hai nikal skta hai
+           
+        if(arr[mid] == 1 && arr[mid-1] == 0){
+                        return n - mid;
+           }
+           
+Code:
+-----
+int countOnes(vector<int>arr,int n){
+            
+            //case1: agr pehla index pe 1 hua tho sara number bhi 1 hi honga
+            if(arr[0] == 1){
+                return n;
+            }
+            
+            if(arr[n-1] == 0){
+                return 0;
+            }
+            
+            else{
+                int s = 0;
+                int e = n-1;
+                int mid = (s+e)/2;
+                
+                while(s <= e){
+                    
+                    //maximum 1 count karenga
+                    //agr 0  0  0   1 1 1 1
+                    //         m-1  m
+                    if(arr[mid] == 1 && arr[mid-1] == 0){
+                        return n - mid;
+                    }
+                    
+                    else if(arr[mid] == 1){
+                        e = mid - 1;
+                    }
+                    else{
+                        s = mid + 1;
+                    }
+                    
+                    mid = (s+e)/2;
+                }
+            }
+        }
+        int maxOnes (vector <vector <int>> &Mat, int N, int M)
+        {
+            int max = INT_MIN;
+            int ans;
+            
+            for(int i=0;i<N;i++){
+                int x = countOnes(Mat[i],M);
+                if(x > max){
+                    max = x;
+                    ans = i;
+                }
+            }
+            
+            return ans;
+        }
